@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 600px; margin: auto; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background-color: teal; color: white; border: none; }
+        .alert { margin-bottom: 15px; padding: 10px; border-radius: 5px; }
+        .success { background-color: #c8e6c9; color: #256029; }
+        .error { background-color: #ffcdd2; color: #b71c1c; }
+    </style>
+</head>
+<body>
+    <h2>Contact Us</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</body>
+</html>
